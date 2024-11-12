@@ -4,7 +4,7 @@ class Deck {
   constructor() {
     this.cards = [];
     this.initializeDeck();
-    this.shuffle();
+    this.shuffleDeck();
   }
 
   initializeDeck() {
@@ -24,15 +24,16 @@ class Deck {
       "King",
       "Ace",
     ];
+    const suits = ["Hearts", "Diamonds", "Clubs", "Spades"];
 
-    for (let i = 0; i < names.length; i++) {
-      for (let j = 0; j < 4; j++) {
-        this.cards.push(new Card(values[i], names[i]));
+    for (const suit of suits) {
+      for (let i = 0; i < values.length; i++) {
+        this.cards.push(new Card(values[i], names[i], suit));
       }
     }
   }
 
-  shuffle() {
+  shuffleDeck() {
     for (let i = this.cards.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [this.cards[i], this.cards[j]] = [this.cards[j], this.cards[i]];
